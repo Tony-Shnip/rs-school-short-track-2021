@@ -21,8 +21,46 @@
  *  [1, 1, 1]
  * ]
  */
-function minesweeper(/* matrix */) {
-  throw new Error('Not implemented');
+function minesweeper(matrix) {
+  let ans = [];
+  ans = matrix;
+  for (let i = 0; i < ans.length; i++) {
+    for (let j = 0; j < ans[0].length; j++) {
+      if (matrix[i][j] === false) {
+        ans[i][j] = 0;
+        if (i > 0 && j > 0) {
+          if (matrix[i - 1][j - 1] === true) ans[i][j]++;
+        }
+        if (i > 0) {
+          if (matrix[i - 1][j] === true) ans[i][j]++;
+        }
+        if (i > 0 && j < ans[0].length - 1) {
+          if (matrix[i - 1][j + 1] === true) ans[i][j]++;
+        }
+        if (j > 0) {
+          if (matrix[i][j - 1] === true) ans[i][j]++;
+        }
+        if (j < ans[0].length - 1) {
+          if (matrix[i][j + 1] === true) ans[i][j]++;
+        }
+        if (i < ans.length - 1 && j > 0) {
+          if (matrix[i + 1][j - 1] === true) ans[i][j]++;
+        }
+        if (i < ans.length - 1) {
+          if (matrix[i + 1][j] === true) ans[i][j]++;
+        }
+        if (i < ans.length - 1 && j < ans[0].length - 1) {
+          if (matrix[i + 1][j + 1] === true) ans[i][j]++;
+        }
+      }
+    }
+  }
+  for (let i = 0; i < ans.length; i++) {
+    for (let j = 0; j < ans[0].length; j++) {
+      if (matrix[i][j] === true) ans[i][j] = 1;
+    }
+  }
+  return ans;
 }
 
 module.exports = minesweeper;
