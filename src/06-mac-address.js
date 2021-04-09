@@ -16,7 +16,7 @@ function isMAC48Address(n) {
   let test = n;
   if (test.length !== 17) return false;
   if (test[2] !== '-' || test[5] !== '-' || test[8] !== '-' || test[11] !== '-' || test[14] !== '-') return false;
-  test = test.replace(/[A-Z0-9]/g, '');
+  test = test.replace(/[A-F0-9]/g, '');
   if (test !== '-----') return false;
   return true;
 }
