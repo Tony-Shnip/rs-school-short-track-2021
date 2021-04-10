@@ -9,20 +9,19 @@
  *
  */
 function encodeLine(str) {
-  const set = new Set();
+  if (str === '') return str;
   const ans = [];
-  let k = 0;
-  for (let i = 0; i < str.length; i++) {
-    set.add(str[i]);
-  }
-  set.forEach((elem) => {
-    for (let i = 0; i < str.length; i++) {
-      if (elem === str[i]) k++;
+  let cur = str[0];
+  let k = 1;
+  for (let i = 1; i <= str.length; i++) {
+    if (cur === str[i]) k++;
+    else {
+      if (k > 1) ans.push(String(k).concat(cur));
+      else ans.push(cur);
+      cur = str[i];
+      k = 1;
     }
-    if (k !== 1) ans.push(String(k).concat(elem));
-    else ans.push(elem);
-    k = 0;
-  });
+  }
   return ans.join('');
 }
 
