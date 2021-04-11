@@ -17,16 +17,14 @@
  * }
  */
 
+const ListNode = require('../extensions/list-node');
+
 function removeKFromList(l, k) {
-  let ans = l;
-  while (ans) {
-    if (ans === k) {
-      ans.value = ans.next.value;
-      ans.next = ans.next.next;
-    }
-    ans = ans.next;
-  }
-  return l;
+  if (l === null) return null;
+  if (l.value === k) return removeKFromList(l.next, k);
+  const result = new ListNode(l.value);
+  result.next = removeKFromList(l.next, k);
+  return result;
 }
 
 module.exports = removeKFromList;
