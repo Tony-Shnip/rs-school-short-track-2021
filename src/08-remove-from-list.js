@@ -17,25 +17,19 @@
  * }
  */
 
-function removeKFromList(l, k) {
-  let temp = l;
-  let check = temp;
-  while (temp) {
-    if (temp.value === k) {
-      check = temp;
-      while (check) {
-        check.value = check.next.value;
-      }
-    }
-    temp = temp.next;
+ function removeKFromList(l, k) {
+  let ans = l;
+  if (ans.value === k) {
+    ans = ans.next;
   }
-  temp = l;
-  while (temp) {
-    if (temp.next.value === k) {
-      temp.next = null;
-    }
+  if (ans.value === k) {
+    ans = ans.next;
+  } else if (ans.next.value === k) {
+    ans.next = ans.next.next;
+  } else if (ans.next.next.value === k) {
+    ans.next.next = ans.next.next.next;
   }
-  return temp;
+  return ans;
 }
 
 module.exports = removeKFromList;
